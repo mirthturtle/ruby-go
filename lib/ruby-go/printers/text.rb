@@ -10,24 +10,24 @@ module RubyGo
 
     def print_game(game)
       print_board(game.board)
-      io.puts  "   " + "_"*(game.board.size * 2)
+      io.puts  "   " + "_"*(game.board.sizeX * 2)
       io.print "   Prisoners || White: #{game.captures[:black]} |"
       io.puts  " Black: #{game.captures[:white]}"
-      io.puts  "   " + "-"*(game.board.size * 2)
+      io.puts  "   " + "-"*(game.board.sizeX * 2)
     end
 
     private
 
     def print_board(board)
-      if board.size < 11
-        io.puts "   #{(0..board.size - 1).to_a.join(' ')}"
+      if board.sizeX < 11
+        io.puts "   #{(1..board.sizeX).to_a.join(' ')}"
       else
-        io.puts "   #{(0..10).to_a.join(' ')}#{(11..board.size - 1).to_a.join('')}"
+        io.puts "   #{(1..10).to_a.join(' ')}#{(11..board.sizeX).to_a.join('')}"
       end
 
       board.rows.each_with_index do |row, i|
-        i = " #{i}" if i < 10
-        io.print "#{i} "
+        i_str = i+1 < 10 ? " #{i+1}" : "#{i+1}"
+        io.print "#{i_str} "
         row.each { |stn| print_stone(stn) }
         io.puts
       end

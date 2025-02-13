@@ -1,10 +1,11 @@
 module RubyGo
   class Board
-    attr_reader :rows, :size
+    attr_reader :rows, :sizeX, :sizeY
 
-    def initialize(size)
-      @rows = Array.new(size) { Array.new(size) { Liberty.new } }
-      @size = size
+    def initialize(sizeX, sizeY)
+      @rows = Array.new(sizeY) { Array.new(sizeX) { Liberty.new } }
+      @sizeX = sizeX
+      @sizeY = sizeY
     end
 
     def empty?
@@ -19,9 +20,9 @@ module RubyGo
       intersections = []
 
       intersections << at(x-1, y) unless x == 0
-      intersections << at(x+1, y) unless x == (size - 1)
+      intersections << at(x+1, y) unless x == (sizeX - 1)
       intersections << at(x, y-1) unless y == 0
-      intersections << at(x, y+1) unless y == (size - 1)
+      intersections << at(x, y+1) unless y == (sizeY - 1)
       intersections
     end
 

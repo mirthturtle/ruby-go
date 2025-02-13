@@ -1,11 +1,15 @@
 # Ruby Go
 
-A gem that implements the rules of go (igo, weiqi, baduk).
+A gem that implements the rules of go (igo, weiqi, baduk). This fork specifically handles boards of irregular dimensions.
 
 ## Use
 
 ```
-game = RubyGo::Game.new(board: 19)
+game = RubyGo::Game.new(19, 77)
+```
+
+```
+# coordinates are array-notated starting at 0
 game.place_black(3,3)
 game.place_white(15,15)
 

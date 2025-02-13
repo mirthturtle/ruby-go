@@ -2,8 +2,8 @@ module RubyGo
   class Game
     attr_reader :board, :moves
 
-    def initialize(board: 19)
-      @board = Board.new(board)
+    def initialize(boardX, boardY)
+      @board = Board.new(boardX, boardY)
       @moves = Moves.new
     end
 
@@ -15,7 +15,8 @@ module RubyGo
     end
 
     def to_sgf
-      sgf = "(;GM[1]FF[4]CA[UTF-8]AP[jphager2]SZ[#{board.size}]PW[White]PB[Black]"
+      size_str = board.sizeX == board.sizeY ? board.sizeX : "#{board.sizeX}:#{board.sizeY}"
+      sgf = "(;GM[1]FF[4]CA[UTF-8]AP[jphager2]SZ[#{size_str}]PW[White]PB[Black]"
 
       moves.each do |move|
         sgf << move.played.to_sgf
@@ -76,8 +77,7 @@ module RubyGo
 
     def check_illegal_placement!(stone)
       coord = stone.to_coord
-
-      if coord.any? { |i| i < 0 || i >= board.size }
+      if coord[0] < 0 || coord[0] >= board.sizeX || coord[1] < 0 || coord[1] >= board.sizeY
         raise(
           Game::IllegalMove,
           "You cannot place a stone off the board."
