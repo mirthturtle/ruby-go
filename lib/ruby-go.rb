@@ -7,6 +7,7 @@ require_relative 'ruby-go/moves'
 require_relative 'ruby-go/game'
 require_relative 'ruby-go/printers/html'
 require_relative 'ruby-go/printers/text'
+require_relative 'ruby-go/printers/array'
 
 module RubyGo
 end

@@ -10,6 +10,8 @@ module RubyGo
 
     def print_game(game)
       print_board(game.board)
+
+      # info footer
       io.puts  "   " + "_"*(game.board.sizeX * 2)
       io.print "   Prisoners || White: #{game.captures[:black]} |"
       io.puts  " Black: #{game.captures[:white]}"
